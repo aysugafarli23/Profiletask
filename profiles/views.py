@@ -4,7 +4,7 @@ from django.contrib import messages
 
 def profile__view(request):
     if request.method == 'POST':
-        form = ProfileForm(request.POST)
+        form = ProfileForm(request.POST or None)
         if form.is_valid():
             form.save()
             messages.success(request, "Siz qeydiyyatdan keçdiniz!")
