@@ -11,11 +11,23 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+import pdfkit
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
+
+WKHTMLTOPDF_CMD = r"C:\wkhtmltox\bin\wkhtmltopdf.exe"
+# pdfkit.configuration(wkhtmltopdf=WKHTMLTOPDF_CMD)
+
+
+PDFKIT_CONFIG = {
+    'wkhtmltopdf': r'C:\wkhtmltox\bin\wkhtmltopdf.exe'
+}
+PDFKIT_OPTIONS = {}
+
 
 CKEDITOR_CONFIGS = {
     'default': {
@@ -53,6 +65,9 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'django_cleanup',
+    'widget_tweaks',
+    'pdfkit',
+    'weasyprint'
 ]
 
 MIDDLEWARE = [
