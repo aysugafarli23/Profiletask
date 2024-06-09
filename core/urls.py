@@ -25,7 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('', profile__view, name='profile' ),
-    path('list/<int:id>', profile_list_view, name='list'),
+    path('list/', list__view, name='list'),
+    path('profile/<int:id>', profile_list_view, name='profile'),
 ]
 
 if settings.DEBUG:

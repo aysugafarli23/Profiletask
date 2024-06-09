@@ -11,12 +11,12 @@
     <div class="cv">
 
         <h1>CV Database Profile List</h1>
-        <h1>CV Database Profile List</h1>
         <ul>
             {% for person in profiles %}
                 <li>{{ person.username }} {{ person.lastname }}
-                    <a href="{% url 'download_cv' person.id %}" class="btn btn-secondary">Download CV</a>
+                    <a href="{% url 'profile' person.id %}" class="btn btn-secondary">Download CV</a>
                 </li>
+                <br><hr><br>
             {% endfor %}
         </ul>
     </div>

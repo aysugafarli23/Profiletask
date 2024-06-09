@@ -26,6 +26,16 @@ def profile__view(request):
     
     return render(request, "base.html", {'form': form})
 
+# def profile_list_view(request,id):
+#     # os.add_dll_directory(r"C:\Program F/iles\gtk-3.8.1\bin")
+#     profile = Profile.objects.get(id=id)
+#     html = render_to_string('cv_template.html', {'profile': profile})
+#     pdf = pdfkit.from_string(html, False , configuration=settings.PDFKIT_CONFIG, options = settings.PDFKIT_OPTIONS)
+    
+#     response = HttpResponse(pdf,content_type = 'application/pdf')
+#     response['Content-Disposition'] = f'attachment; filename = "{profile.name}_{profile.lastname}_profile.pdf"'
+    
+#     return response
 
 def profile_list_view(request, id):
     profile = get_object_or_404(Profile, id=id)
@@ -35,6 +45,13 @@ def profile_list_view(request, id):
     pdf = pdfkit.from_string(html_string, False, configuration=config, options=settings.PDFKIT_OPTIONS)
     
     response = HttpResponse(pdf, content_type='application/pdf')
-    response['Content-Disposition'] = 'inline; filename="profile.pdf"'
-    
+    response['Content-Disposition'] = f'attachment; filename="{profile.username}_{profile.lastname}_profile.pdf"'
+
     return response
+
+def list__view(request):
+    profiles = Profile.objects.all()
+    context={
+        "profiles":profiles
+    }
+    return render(request, "list.html", context)
